@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Boba Bliss - The Ultimate Boba Tea Experience</title>
+  <style>
+    :root {
+      --primary: #8B5A2B;
+      --secondary: #F1C27D;
+      --accent: #FFCC99;
+      --light: #FFF8E7;
+      --dark: #5D4037;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Trebuchet MS', sans-serif;
+    }
+    
+    body {
+      background-color: var(--light);
+      color: var(--dark);
+    }
+    
+    header {
+      background-color: var(--primary);
+      color: var(--light);
+      padding: 1rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .logo {
+      font-size: 2.5rem;
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+    }
+    
+    .tagline {
+      font-style: italic;
+      margin-bottom: 1rem;
+    }
+    
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      padding: 1rem;
+      background-color: var(--secondary);
+    }
+    
+    nav a {
+      color: var(--dark);
+      text-decoration: none;
+      font-weight: bold;
+      padding: 0.5rem;
+      border-radius: 20px;
+      transition: all 0.3s;
+    }
+    
+    nav a:hover {
+      background-color: var(--accent);
+      transform: scale(1.05);
+    }
+    
+    .hero {
+      height: 300px;
+      background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.1)), url('/api/placeholder/800/300') center/cover;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+    }
+    
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+    
+    .hero p {
+      font-size: 1.2rem;
+      max-width: 600px;
+      text-align: center;
+    }
+    
+    .cta-button {
+      margin-top: 1.5rem;
+      padding: 0.8rem 1.5rem;
+      background-color: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 25px;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    
+    .cta-button:hover {
+      background-color: var(--dark);
+      transform: scale(1.05);
+    }
+    
+    .features {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 2rem;
+      gap: 2rem;
+    }
+    
+    .feature-card {
+      background-color: white;
+      border-radius: 10px;
+      padding: 1.5rem;
+      width: 300px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      text-align: center;
+      transition: all 0.3s;
+    }
+    
+    .feature-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    }
+    
+    .feature-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      color: var(--primary);
+    }
+    
+    .menu {
+      padding: 2rem;
+      text-align: center;
+    }
+    
+    .menu h2 {
+      margin-bottom: 2rem;
+    }
+    
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .menu-item {
+      background-color: white;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      transition: all 0.3s;
+    }
+    
+    .menu-item:hover {
+      transform: scale(1.03);
+    }
+    
+    .item-image {
+      height: 200px;
+      background-color: var(--secondary);
+      position: relative;
+    }
+    
+    .item-image::before {
+      content: '🧋';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 5rem;
+    }
+    
+    .item-info {
+      padding: 1rem;
+    }
+    
+    .item-name {
+      font-weight: bold;
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+    }
+    
+    .item-price {
+      color: var(--primary);
+      font-weight: bold;
+    }
+    
+    .item-description {
+      margin: 0.5rem 0;
+      font-size: 0.9rem;
+      color: #666;
+    }
+    
+    .testimonials {
+      background-color: var(--secondary);
+      padding: 3rem 2rem;
+      text-align: center;
+    }
+    
+    .testimonials h2 {
+      margin-bottom: 2rem;
+    }
+    
+    .testimonial-card {
+      background-color: white;
+      padding: 1.5rem;
+      border-radius: 10px;
+      max-width: 800px;
+      margin: 0 auto 1.5rem;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    
+    .testimonial-text {
+      font-style: italic;
+      margin-bottom: 1rem;
+    }
+    
+    .testimonial-author {
+      font-weight: bold;
+    }
+    
+    .animated-boba {
+      position: absolute;
+      font-size: 1.5rem;
+      animation: fall linear infinite;
+      opacity: 0.7;
+    }
+    
+    @keyframes fall {
+      0% {
+        transform: translateY(-100px);
+      }
+      100% {
+        transform: translateY(150px);
+      }
+    }
+    
+    .footer {
+      background-color: var(--dark);
+      color: white;
+      text-align: center;
+      padding: 2rem;
+    }
+    
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin: 1rem 0;
+    }
+    
+    .social-icon {
+      background-color: var(--primary);
+      color: white;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-decoration: none;
+      transition: all 0.3s;
+    }
+    
+    .social-icon:hover {
+      background-color: var(--accent);
+      color: var(--dark);
+      transform: scale(1.1);
+    }
+    
+    @media (max-width: 768px) {
+      .logo {
+        font-size: 2rem;
+      }
+      
+      .hero h1 {
+        font-size: 2.2rem;
+      }
+      
+      nav {
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+      
+      .features {
+        padding: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">🧋 Boba Bliss</div>
+    <div class="tagline">Where Every Sip is a Pearl of Wisdom</div>
+    
+    <div class="animated-boba" style="left: 10%; animation-duration: 7s;">🧋</div>
+    <div class="animated-boba" style="left: 20%; animation-duration: 5s; animation-delay: 1s;">🧋</div>
+    <div class="animated-boba" style="left: 35%; animation-duration: 8s; animation-delay: 0.5s;">🧋</div>
+    <div class="animated-boba" style="left: 50%; animation-duration: 6s; animation-delay: 2s;">🧋</div>
+    <div class="animated-boba" style="left: 65%; animation-duration: 9s; animation-delay: 1.5s;">🧋</div>
+    <div class="animated-boba" style="left: 80%; animation-duration: 7s; animation-delay: 0.7s;">🧋</div>
+    <div class="animated-boba" style="left: 90%; animation-duration: 5s; animation-delay: 2.5s;">🧋</div>
+  </header>
+  
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#menu">Menu</a>
+    <a href="#about">About Us</a>
+    <a href="#locations">Locations</a>
+    <a href="#contact">Contact</a>
+  </nav>
+  
+  <section class="hero">
+    <h1>It's Boba Time!</h1>
+    <p>Life is better with tapioca pearls at the bottom of your cup.</p>
+    <button class="cta-button">ORDER NOW</button>
+  </section>
+  
+  <section class="features">
+    <div class="feature-card">
+      <div class="feature-icon">🧋</div>
+      <h3>Pearls of Joy</h3>
+      <p>Our tapioca pearls are cooked fresh daily with a secret family recipe that makes them perfectly chewy. Just the right amount of bounce in every bite!</p>
+    </div>
+    
+    <div class="feature-card">
+      <div class="feature-icon">🫖</div>
+      <h3>Tea-rific Flavors</h3>
+      <p>We source premium tea leaves from around the world. Our tea masters brew each batch with precision to extract maximum flavor.</p>
+    </div>
+    
+    <div class="feature-card">
+      <div class="feature-icon">🥤</div>
+      <h3>Suck It Up</h3>
+      <p>Our extra-wide straws are biodegradable and designed for the optimal boba-slurping experience. Perfect pearl delivery system!</p>
+    </div>
+  </section>
+  
+  <section class="menu" id="menu">
+    <h2>Our Bubble Menu</h2>
+    <div class="menu-grid">
+      <div class="menu-item">
+        <div class="item-image"></div>
+        <div class="item-info">
+          <div class="item-name">Classic Milk Tea</div>
+          <div class="item-description">The OG that started it all. Creamy, sweet, and perfectly balanced.</div>
+          <div class="item-price">$5.99</div>
+        </div>
+      </div>
+      
+      <div class="menu-item">
+        <div class="item-image"></div>
+        <div class="item-info">
+          <div class="item-name">Taro Explosion</div>
+          <div class="item-description">Purple paradise with sweet taro flavor and extra pearls.</div>
+          <div class="item-price">$6.49</div>
+        </div>
+      </div>
+      
+      <div class="menu-item">
+        <div class="item-image"></div>
+        <div class="item-info">
+          <div class="item-name">Matcha Madness</div>
+          <div class="item-description">Premium Japanese matcha with a hint of sweetness.</div>
+          <div class="item-price">$6.99</div>
+        </div>
+      </div>
+      
+      <div class="menu-item">
+        <div class="item-image"></div>
+        <div class="item-info">
+          <div class="item-name">Brown Sugar Boba</div>
+          <div class="item-description">Caramelized brown sugar syrup swirls with fresh milk and warm pearls.</div>
+          <div class="item-price">$7.49</div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <section class="testimonials">
+    <h2>Happy Slurpers</h2>
+    
+    <div class="testimonial-card">
+      <p class="testimonial-text">"I was having a terrible day until I had my first sip of Classic Milk Tea. The pearls were so perfectly chewy they literally bounced me back to happiness!"</p>
+      <p class="testimonial-author">— Sarah P., Professional Boba Enthusiast</p>
+    </div>
+    
+    <div class="testimonial-card">
+      <p class="testimonial-text">"The Brown Sugar Boba here changed my life. I've calculated that I've spent approximately 37% of my annual income at Boba Bliss, and I regret NOTHING."</p>
+      <p class="testimonial-author">— Mike T., Financially Irresponsible Tea Lover</p>
+    </div>
+    
+    <div class="testimonial-card">
+      <p class="testimonial-text">"Their straws are so wide I accidentally inhaled three pearls at once. 5 stars, would choke again."</p>
+      <p class="testimonial-author">— Jamie L., Breathing Optional</p>
+    </div>
+  </section>
+  
+  <section class="footer">
+    <h3>Boba Bliss</h3>
+    <p>Join the bubble revolution!</p>
+    
+    <div class="social-links">
+      <a href="#" class="social-icon">f</a>
+      <a href="#" class="social-icon">t</a>
+      <a href="#" class="social-icon">i</a>
+      <a href="#" class="social-icon">y</a>
+    </div>
+    
+    <p>© 2025 Boba Bliss. All Rights Reserved. No Pearls Were Harmed in the Making of this Website.</p>
+  </section>
+</body>
+</html>
